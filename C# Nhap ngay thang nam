@@ -1,0 +1,103 @@
+
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+ 
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Nhap thang : ");
+            string Sthang = Console.ReadLine();
+            Console.Write("Nhap nam : ");
+            string Snam = Console.ReadLine();
+ 
+            int th = int.Parse(Sthang);
+            int nm = int.Parse(Snam);
+            int songay = 0;
+ 
+            if (th >= 1 && th <= 12)
+            {
+                switch (th)
+                {
+                    case 1:
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                    case 12: songay = 31; break;
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11: songay = 30; break;
+ 
+                    case 2:
+                        if (nm % 400 == 0 || (nm % 4 == 0 && nm % 100 != 0))    // nam nhuan
+                            songay = 29;
+                        else
+                            songay = 28;
+                        break;
+                }
+ 
+                Console.Write("=> Thang "+th+"/"+nm+" co "+songay+" ngay\n");
+            }
+            else
+                Console.Write("=> Thang khong hop le!\n");
+            Console.ReadLine();
+        }
+    }
+}
