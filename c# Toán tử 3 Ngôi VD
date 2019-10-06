@@ -1,0 +1,6 @@
+double diem;
+            Console.WriteLine("Xin mời bạn nhập vào điểm của bạn là : ");
+            diem = double.Parse(Console.ReadLine());
+
+            string ketqua = diem >= 9 ? "Xuất sắc" : diem >= 8 ? "Giỏi" : diem >= 6.5 ? "Khá" : diem >= 5 ? "Yếu" : diem < 5 ? "Kém";
+            Console.WriteLine("Điểm của bạn là {0} ==> {1}", diem, ketqua);
