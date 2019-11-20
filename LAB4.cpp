@@ -10,7 +10,7 @@ namespace Lab4_Nguyễn_Văn_Thạnh
     {
         protected string name, color;
         protected byte speed;
-        public Motor(string n = "", string c = "Xe Rùa ", byte s = 30)
+        public Motor(string n = "Xe Rùa", string c = "Đen", byte s = 30)
         {
             this.name = n; this.color = c; this.speed = s;
         }
@@ -156,7 +156,7 @@ namespace Lab4_Nguyễn_Văn_Thạnh
         
         public override string ToString()
         {
-            return ten + "\nChu vi= " + chuvi().ToString() + "\nDien tich= " + string.Format("{0:0.00}", dientich());
+            return ten + "\nChu vi= " + chuvi().ToString() + "\nDiện tích= " + string.Format("{0:0.00}", dientich());
         }
     }
 
@@ -185,7 +185,7 @@ namespace Lab4_Nguyễn_Văn_Thạnh
 
         public override string ToString()
         {
-            return "Tam giac " + base.ToString();
+            return "Tam giác " + base.ToString();
         }
     }
 
@@ -210,7 +210,7 @@ namespace Lab4_Nguyễn_Văn_Thạnh
 
         public override string ToString()
         {
-            return "Hinh chu nhat " + base.ToString();
+            return "Hình chữ nhật " + base.ToString();
         }
     }
 
@@ -295,7 +295,7 @@ namespace Lab4_Nguyễn_Văn_Thạnh
             HINHHOC[] hh = new HINHHOC[20];
             for (int i = 0; i < sl; i++)
             {
-                Console.WriteLine("Chon loai hinh (1.Tam giac, 2.Hinh chu nhat):");
+                Console.WriteLine("Chọn loại hình (1.Tam giác, 2.Hình chữ nhậtt):");
                 chon = byte.Parse(Console.ReadLine());
                 if (chon == 1)
                 {
