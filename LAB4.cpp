@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp7
+namespace Lab4_Nguyễn_Văn_Thạnh
 {
-
     class Motor
     {
         protected string name, color;
@@ -137,6 +136,83 @@ namespace ConsoleApp7
             return base.ToString();
         }
     }
+    class HINHHOC
+    {
+        string ten;
+        public HINHHOC(string ten = "")
+        {
+            this.ten = ten;
+        }
+        public virtual int chuvi()
+        {
+            return 0;
+        }
+
+        public virtual double dientich()
+        {
+            return 0;
+        }
+
+        
+        public override string ToString()
+        {
+            return ten + "\nChu vi= " + chuvi().ToString() + "\nDien tich= " + string.Format("{0:0.00}", dientich());
+        }
+    }
+
+    
+
+    class TAMGIAC : HINHHOC
+    {
+        byte a, b, c;
+        public TAMGIAC(byte a = 1, byte b = 2, byte c = 3, string ten = "ABC") : base(ten)
+        {
+            this.a = a;
+            this.b = b;
+            this.c = c;
+        }
+
+        public override int chuvi()
+        {
+            return a + b + c;
+        }
+
+        public override double dientich()
+        {
+            float cv = chuvi();
+            return Math.Sqrt(cv * (cv - a) * (cv - b) * (cv - c));
+        }
+
+        public override string ToString()
+        {
+            return "Tam giac " + base.ToString();
+        }
+    }
+
+    class CHUNHAT : HINHHOC
+    {
+        byte a, b;
+        public CHUNHAT(byte a = 1, byte b = 2, string ten = "ABCD") : base(ten)
+        {
+            this.a = a;
+            this.b = b;
+        }
+
+        public override int chuvi()
+        {
+            return (a + b) * 2;
+        }
+
+        public override double dientich()
+        {
+            return a * b;
+        }
+
+        public override string ToString()
+        {
+            return "Hinh chu nhat " + base.ToString();
+        }
+    }
 
     //class Program
     class Program
@@ -210,13 +286,35 @@ namespace ConsoleApp7
             }
             Console.WriteLine("Có {0} con mèo khi chọn", dem);
         }
+        static void BT3()
+        {
+            byte chon,sl;
+
+            Console.WriteLine("Nhap so luong hinh:");
+            sl = byte.Parse(Console.ReadLine());
+            HINHHOC[] hh = new HINHHOC[20];
+            for (int i = 0; i < sl; i++)
+            {
+                Console.WriteLine("Chon loai hinh (1.Tam giac, 2.Hinh chu nhat):");
+                chon = byte.Parse(Console.ReadLine());
+                if (chon == 1)
+                {
+                    hh[i] = new TAMGIAC();
+                }
+                else
+                {
+                    hh[i] = new CHUNHAT();
+                }
+            }
+            for (int i = 0; i < sl; i++) Console.WriteLine(hh[i].ToString());
+        }
         static void Main()
         {
             Console.OutputEncoding = Encoding.UTF8;
             BT1();
             BT2();
+            BT3();
             Console.ReadKey();
         }
     }
-
 }
