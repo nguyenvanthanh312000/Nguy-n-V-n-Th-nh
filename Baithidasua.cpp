@@ -7,12 +7,12 @@ using System.IO;
 
 namespace ConsoleApp2
 {
-    class Phone
+    public class Phone
     {
         //Khai báo các biến lớp
-        string maso, nhanhieu;
-        int dongia;
-        DateTime namsx;
+        public string maso, nhanhieu;
+        public int dongia;
+        public DateTime namsx;
         public string Maso { get => maso; set => maso = value; }
         public string Nhan { get => nhanhieu; set => nhanhieu = value; }
         // Khai Báo Contructor có tham số
@@ -39,10 +39,10 @@ namespace ConsoleApp2
     }
 
     // SmartPhone Kế thừa từ Phone
-    class SmartPhone : Phone, IComparable<SmartPhone>
+    public class SmartPhone : Phone, IComparable<SmartPhone>
     {
         //Khai báo các biến 
-        byte Mpixel, mem;
+        public byte Mpixel, mem;
         public SmartPhone(string ma = "", string nhan = "", int dg = 0, DateTime nam = new DateTime(), byte m = 0, byte g = 0) : base(ma, nhan, dg, nam)
         {
             Mpixel = m;
@@ -63,7 +63,7 @@ namespace ConsoleApp2
         // Hàm xuất ToString
         public override string ToString()
         {
-            return Maso + "\t" + Nhan + "\t\tMáy Ảnh:" + Mpixel + "M\tDung Lượng Bộ Nhớ :" + mem + "GB\t\tGiá:" + Giaban();
+            return "Mã số :"+Maso + "\tNhãn Hiệu : " + Nhan + "\tMáy Ảnh:" + Mpixel + "M\tDung Lượng Bộ Nhớ :" + mem + "GB\t\tGiá:" + Giaban();
         }
         public int CompareTo(SmartPhone x)
         {
@@ -87,6 +87,7 @@ namespace ConsoleApp2
             StreamReader rd = new StreamReader(f, Encoding.UTF8);
             // Tạo List danh sách
             List<SmartPhone> ls = new List<SmartPhone>();
+            //Nhập Ds n SmartPhone
             try
             {
                 while (!rd.EndOfStream)
@@ -97,20 +98,21 @@ namespace ConsoleApp2
                     DateTime namsx = DateTime.Parse(rd.ReadLine());
                     byte mpi = byte.Parse(rd.ReadLine());
                     byte mem = byte.Parse(rd.ReadLine());
-                    // Thêm các biến vào danh sách
+                    // Thêm vào danh sách
                     SmartPhone s = new SmartPhone(maso, nhanhieu, dongia, namsx, mpi, mem);
                     ls.Add(s);
                 }
             }
             catch
             {
-                Console.WriteLine("Không đọc được File");
+                Console.WriteLine("Không mở được File");
             }
             // sắp xếp giảm dần
             ls.Sort();
             foreach (var h in ls)
                 Console.WriteLine(h.ToString());
-            float max = 0;
+            // Xuất SmartPhone cao nhất
+            double max = 0;
             foreach (var h in ls)
             {
                 if (max < h.Giaban())
@@ -120,8 +122,8 @@ namespace ConsoleApp2
             foreach (var h in ls)
                 if (h.Giaban() == max)
                     Console.WriteLine(h.ToString());
-            //d
-            Console.Write("\nNhãn hiệu cần tìm: ");
+            // Đếm và in số lượng SmartPhone của nhãn hiệu x , x nhập vào 
+            Console.Write("\nNhãn hiệu SmartPhone cần tìm: ");
             string x = Console.ReadLine();
             byte dem = 0;
             foreach (var h in ls)
@@ -133,19 +135,19 @@ namespace ConsoleApp2
                 }
             }
             Console.WriteLine("Số lượng SmartPhone nhãn hiệu {0}: {1}", x, dem);
-            //e
-            Console.WriteLine("\nSmartPhone cần thêm:");
+            // Chèn 1 Smart Phone vào ds
+            Console.WriteLine("\nNhập SmartPhone cần thêm vào:");
             Console.Write("Mã số : ");
             string ms = Console.ReadLine();
             Console.Write("Nhãn hiệu: ");
             string nh = Console.ReadLine();
             Console.Write("Đơn giá: ");
             int dg = int.Parse(Console.ReadLine());
-            Console.Write("Năm sản xuất: ");
+            Console.Write("Ngày Tháng Năm Sản Xuất : ");
             DateTime nsx = DateTime.Parse(Console.ReadLine());
             Console.Write("Camera: ");
             byte mpx = byte.Parse(Console.ReadLine());
-            Console.Write("Dung lượng: ");
+            Console.Write("Dung lượng bộ nhớ: ");
             byte gb = byte.Parse(Console.ReadLine());
             SmartPhone sp1 = new SmartPhone(ms, nh, dg, nsx, mpx, gb);
             // chạy vòng for 
